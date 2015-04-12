@@ -1,0 +1,125 @@
+// Including library to do serial communication with bluetooth
+#include <SoftwareSerial.h>
+#include <PLabBTSerial.h>
+#include <ZumoMotors.h>
+#include <PLab_ZumoMotors.h>
+
+const int btUnitTxPin = 1; // Connected to tx on bt unit
+const int btUnitRxPin = 2; // Connected to rx on bt unit
+PLabBTSerial btSerial(btUnitTxPin, btUnitRxPin);
+ZumoMotors motors;
+PLab_ZumoMotors PLab_motors;
+
+
+void setup() {
+    btSerial.begin(9600);
+    turnRight180();
+    turnLeft();
+    driveForwardTimesY();
+    turnRight();
+    for(int i = 0; i <= 6; i++){
+      driveForwardX();
+      }
+    turnRight();
+    driveForwardTimesY();
+    turnRight180();
+
+}
+
+void loop() {
+  delay(30000000);
+  driveForwardTimesY();
+  turnLeft();
+  for(int i = 0; i <= 7; i++){
+    driveForwardX();
+    }
+  turnRight();
+  driveForwardTimesY();
+  delay(2000);
+  turnRight180();
+  driveForwardTimesY();
+  turnLeft();
+  driveForwardTimesX();
+  turnRight();
+  driveForwardTimesY();
+  delay(2000);
+  turnRight180();
+  driveForwardTimesY();
+  turnRight();
+  driveForwardTimesX();
+  turnLeft();
+  driveForwardTimesY();
+  delay(2000);
+  turnRight180();
+  driveForwardTimesY();
+  turnLeft();
+  driveForwardTimesX();
+  driveForwardX();
+  turnRight();
+  driveForwardTimesY();
+  delay(10000000);
+  
+}
+
+void driveForwardX(){
+    PLab_motors.setSpeeds(210, 200);
+    delay(416);
+    PLab_motors.setSpeeds(0, 0);
+    delay(500);
+  } 
+
+void driveForwardTimesX(){
+    PLab_motors.setSpeeds(210, 200);
+    delay(416);
+    PLab_motors.setSpeeds(0, 0);
+    delay(500);
+    PLab_motors.setSpeeds(210, 200);
+    delay(416);
+    PLab_motors.setSpeeds(0, 0);
+    delay(500);
+    }
+    
+    
+void driveForwardY(){
+    PLab_motors.setSpeeds(210, 200);
+    delay(416);
+    PLab_motors.setSpeeds(0, 0);
+    delay(500);
+  } 
+
+void driveForwardTimesY(){
+    PLab_motors.setSpeeds(210, 200);
+    delay(570);
+    PLab_motors.setSpeeds(0, 0);
+    delay(500);
+    PLab_motors.setSpeeds(210, 200);
+    delay(570);
+    PLab_motors.setSpeeds(0, 0);
+    delay(500);
+    }
+  
+ 
+void driveForwardVersion2(){
+  PLab_motors.forward(200, 16.9);
+  delay(100);
+  } 
+  
+void turnLeft(){
+  PLab_motors.turnLeft(100,90);
+  delay(1000);
+  }
+ 
+void turnLeft180(){
+  PLab_motors.turnLeft(100, 180);
+  delay(500);
+  }
+  
+void turnRight(){
+  PLab_motors.turnRight(100,90);
+  delay(500);
+  }
+  
+void turnRight180(){
+  PLab_motors.turnRight(100,180);
+  delay(500);
+  }
